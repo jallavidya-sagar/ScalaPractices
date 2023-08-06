@@ -1,0 +1,2 @@
+# ScalaPractices
+Sample Examples
