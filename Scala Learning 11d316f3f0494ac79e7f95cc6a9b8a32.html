@@ -1,0 +1,693 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Scala Learning</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="11d316f3-f049-4ac7-9e7f-95cc6a9b8a32" class="page serif"><header><h1 class="page-title">Scala Learning</h1><p class="page-description"></p></header><div class="page-body"><h1 id="9ada26f6-b285-40ad-bb5d-df32e02753ae" class="">Getting Started with Scala</h1><p id="a9c89758-7715-478f-b66c-561405155075" class="">Scala is a high-level, statically-typed programming language that combines the best of functional and object-oriented programming paradigms. Here&#x27;s a guide to help you learn Scala, starting from the basics and gradually progressing to more complex aspects.</p><h2 id="d43fa7b7-1853-42f9-988f-280e59a82ced" class="">Prerequisites</h2><p id="d5b144df-561f-4f0c-80e7-e7f714453014" class="">Before starting with Scala, you should have a basic understanding of:</p><ol type="1" id="62dc7316-b4ea-429a-9517-049928425701" class="numbered-list" start="1"><li>Programming concepts (loops, conditions, functions, etc.)</li></ol><ol type="1" id="36701ca1-0f4b-4aeb-8e69-6a89cc8c1566" class="numbered-list" start="2"><li>Object-oriented programming (OOP) principles</li></ol><ol type="1" id="fc8b5805-906e-4c4d-8b1d-1e6dbe45577a" class="numbered-list" start="3"><li>Java (optional but beneficial)</li></ol><h2 id="4d0dcccc-43ee-4c55-bfc8-be3bd2f1a8dd" class="">Step 1: Installation</h2><h3 id="0f9425f0-0c44-4553-a45a-d6e3217eda70" class="">For Windows/Mac/Linux:</h3><ol type="1" id="65b33de8-a033-4996-a1c1-3aeaadc034e3" class="numbered-list" start="1"><li><strong>Install Java Development Kit (JDK):</strong> Scala runs on the Java Virtual Machine (JVM), so you&#x27;ll need to install the JDK.</li></ol><ol type="1" id="50a7d2cf-b6c8-4d3a-a86e-56663391460a" class="numbered-list" start="2"><li><strong>Install Scala:</strong> You can download Scala from the <a href="https://www.scala-lang.org/download/">official website</a>.</li></ol><ol type="1" id="4edd525b-1bc3-43ff-9ea9-b555b81d85e3" class="numbered-list" start="3"><li><strong>Install an IDE:</strong> IntelliJ IDEA with the Scala plugin is highly recommended for Scala development.</li></ol><h2 id="767425fd-7221-43ea-b003-6854c7b27872" class="">Step 2: Basic Concepts</h2><h3 id="a29c49c2-c746-46d4-8c90-ff6f8648e330" class="">Variables and Types</h3><p id="509c1966-9e11-4ca5-976a-d5f354c22329" class="">Scala supports both mutable (<code>var</code>) and immutable (<code>val</code>) variables.</p><pre id="61a48c33-b4fb-41a8-85d3-a926e687206b" class="code code-wrap"><code>val x: Int = 10
+var y: String = &quot;Hello&quot;
+</code></pre><h3 id="939b67fc-168a-45f1-9c1c-a15f0c5d0a4b" class="">Functions</h3><p id="b771e527-52eb-417b-bd44-93db42a15ff8" class="">Functions are first-class citizens in Scala.</p><pre id="6ba43538-f6f6-4558-9908-a03d3d04f7c5" class="code code-wrap"><code>def add(a: Int, b: Int): Int = a + b
+</code></pre><h3 id="4a4def64-b668-4194-9480-21d91551aaae" class="">Classes and Objects</h3><p id="b0ef1f46-ae12-40cd-b7de-45e463a97478" class="">You can create classes and objects to encapsulate data and behavior.</p><pre id="a9c0898b-36dd-494e-ba17-714518909e2b" class="code code-wrap"><code>class Person(name: String, age: Int)
+val person = new Person(&quot;John&quot;, 25)
+</code></pre><h2 id="171a204b-abac-4119-92a3-55d23680e989" class="">Step 3: Intermediate Topics</h2><ol type="1" id="3df1db85-5d04-4de0-86e7-c593fae0b02c" class="numbered-list" start="1"><li><strong>Functional Programming:</strong> Learn about higher-order functions, pattern matching, and more.</li></ol><ol type="1" id="d6e830ca-7d47-41f6-943f-0261d15e1a80" class="numbered-list" start="2"><li><strong>Collections:</strong> Understand how to work with lists, sets, maps, etc.</li></ol><ol type="1" id="87a89817-e5dd-4247-a784-a29c4d7149ca" class="numbered-list" start="3"><li><strong>Concurrency:</strong> Explore the Akka framework for building concurrent applications.</li></ol><h2 id="a5014b7b-a7ff-44c3-8b2c-2fc7cc61377a" class="">Step 4: Advanced Topics</h2><ol type="1" id="a16889aa-1f8f-444f-84e1-6ec7c3edf4e7" class="numbered-list" start="1"><li><strong>Implicit Conversions:</strong> Customizable type conversions.</li></ol><ol type="1" id="34eab9e5-e3d0-4b41-a1a6-fa8a73ba343a" class="numbered-list" start="2"><li><strong>Macros:</strong> Compile-time metaprogramming.</li></ol><ol type="1" id="127b96e2-06be-455e-96c8-6d43a30be494" class="numbered-list" start="3"><li><strong>Type-Level Programming:</strong> Advanced type system features.</li></ol><h2 id="e36e846e-8383-4c2c-8ffe-b5ddce0b7dbd" class="">Unusual Scenarios and Exceptions</h2><ol type="1" id="45e890db-1c21-4582-9824-bdd4dda17625" class="numbered-list" start="1"><li><strong>Binary Compatibility:</strong> Be aware of compatibility issues between Scala versions.</li></ol><ol type="1" id="22666065-2c6b-4b9f-bb22-33c28e7a6a4d" class="numbered-list" start="2"><li><strong>Implicit Conflicts:</strong> Implicit conversions can lead to unexpected behaviors.</li></ol><h2 id="a618233c-a068-48c6-8a19-5c30fa3924e7" class="">Optimization and Efficiency</h2><ol type="1" id="837a3790-717a-4ed3-a3c1-089b4aed99b4" class="numbered-list" start="1"><li><strong>Use the Right Collections:</strong> Picking the correct data structure can greatly improve performance.</li></ol><ol type="1" id="c57bca74-4f60-42c1-9a58-f5c068b38337" class="numbered-list" start="2"><li><strong>Functional Techniques:</strong> Embrace immutability and pure functions for more maintainable code.</li></ol><h2 id="79acc432-5cc8-4a0e-9cb3-3661a58e1ee1" class="">Examples</h2><h3 id="64190fef-4966-4dea-bf10-fc214fe996e3" class="">Basic Example</h3><pre id="f20a904b-1691-4b7f-b54f-5bc35181531e" class="code code-wrap"><code>object HelloWorld {
+  def main(args: Array[String]): Unit = {
+    println(&quot;Hello, world!&quot;)
+  }
+}
+</code></pre><h3 id="f42287e4-9ed2-474c-abfb-e197716dfd3e" class="">Complex Example (Real-World Use Case)</h3><p id="e645231e-961d-43f4-807c-8313aeeeed4a" class="">Building a RESTful API using the Play Framework to manage a library system.</p><pre id="fb9b92a1-5c62-45c6-bf9d-d6e2fc580406" class="code code-wrap"><code>class BooksController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
+  def getAllBooks: Action[AnyContent] = Action { implicit request: Request[AnyContent] =&gt;
+    // Logic to fetch all books from the database
+    Ok(Json.toJson(books))
+  }
+}
+</code></pre><h1 id="547f9f01-c3be-4ba6-ae95-9b22a245a254" class="">Conclusion</h1><p id="33b9945d-b768-48b8-886b-c5a2f8f0e20f" class="">Scala is a versatile language with a rich ecosystem. Start with the basics, practice with real-world projects, and gradually explore more advanced topics. Joining online communities, attending meetups, and reading Scala-specific books will further enhance your learning.</p><h1 id="4d2c8d17-6802-453f-bbcb-cdfb1417b607" class="">Tags</h1><ul id="e5aa3c59-4531-4c45-9fc8-d708cda7fb7e" class="bulleted-list"><li style="list-style-type:disc">#Scala</li></ul><ul id="2d0e25ef-96d6-4dc5-9c97-366c76e57ef0" class="bulleted-list"><li style="list-style-type:disc">#FunctionalProgramming</li></ul><ul id="a8a3b6e6-bb32-4226-bf44-ec7e974a8de4" class="bulleted-list"><li style="list-style-type:disc">#ObjectOrientedProgramming</li></ul><ul id="f8889821-88a3-49d4-81d0-cd0ddeda931c" class="bulleted-list"><li style="list-style-type:disc">#Installation</li></ul><ul id="0c967e7d-6ad4-41ee-82ff-3626a12c49c4" class="bulleted-list"><li style="list-style-type:disc">#LearningPath</li></ul><ul id="5bb681ce-f5b7-4a9a-84ed-3f700f5ee23f" class="bulleted-list"><li style="list-style-type:disc">#RealWorldExamples</li></ul><figure id="4b5a1a19-a0cb-4753-8f72-b5292e669746" class="link-to-page"><a href="Scala%20Learning%2011d316f3f0494ac79e7f95cc6a9b8a32/Variables%20and%20Types%204b5a1a19a0cb47538f72b5292e669746.html">Variables and Types</a></figure><figure id="1aff2407-026f-4288-8576-eccdaaea1d5b" class="link-to-page"><a href="Scala%20Learning%2011d316f3f0494ac79e7f95cc6a9b8a32/Functions%201aff2407026f42888576eccdaaea1d5b.html">Functions </a></figure><p id="ee63d49b-7dbc-45e2-90c8-3ca8b162dbc3" class="">
+</p></div></article></body></html>
